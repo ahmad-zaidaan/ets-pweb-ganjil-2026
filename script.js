@@ -65,10 +65,13 @@ function loadData() {
 
 function perbaruiPilihanKategori() {
 	selectKategori.textContent = "";
+
 	state.amplop.forEach((a) => {
 		const option = document.createElement("option");
+
 		option.value = a.nama;
 		option.textContent = a.nama;
+		
 		selectKategori.append(option);
 	});
 }
