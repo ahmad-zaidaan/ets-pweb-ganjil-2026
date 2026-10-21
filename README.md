@@ -17,5 +17,3 @@ Atur nominal tiap amplop (minimal 3 pos); pengeluaran mengurangi amplop terkait;
 - Tambah transaksi
 - Hapus transaksi
 - Data amplop dan traksaksi bisa berubah sesuai localStorage
-
-(Nama dan NRP, persona yang didapat, daftar fitur yang selesai (W1–W6, fitur khas, bonus), dan fitur yang belum selesai)
