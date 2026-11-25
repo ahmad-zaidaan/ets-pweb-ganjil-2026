@@ -63,7 +63,7 @@ function loadData() {
 
 // ------------------- RENDER
 
-function perbaruiPilihanKategori() {
+function updateKategoriAmplop() {
 	selectKategori.textContent = "";
 
 	state.amplop.forEach((a) => {
@@ -80,11 +80,11 @@ function renderRingkasan() {
 	let totalPemasukan = 0;
 	let totalPengeluaran = 0;
 
-	state.transaksi.forEach((t) => {
-		if (t.jenis === "pemasukan") {
-			totalPemasukan += t.nominal;
-		} else if (t.jenis === "pengeluaran") {
-			totalPengeluaran += t.nominal;
+	state.transaksi.forEach((transaksi) => {
+		if (transaksi.jenis === "pemasukan") {
+			totalPemasukan += transaksi.nominal;
+		} else if (transaksi.jenis === "pengeluaran") {
+			totalPengeluaran += transaksi.nominal;
 		}
 	});
 
@@ -107,8 +107,8 @@ function renderAmplop() {
 
 	state.amplop.forEach((itemAmplop) => {
 		const totalTerpakai = state.transaksi
-			.filter((t) => t.jenis === "pengeluaran" && t.kategori === itemAmplop.nama)
-			.reduce((total, t) => total + t.nominal, 0);
+			.filter((transaksi) => transaksi.jenis === "pengeluaran" && transaksi.kategori === itemAmplop.nama)
+			.reduce((total, transaksi) => total + transaksi.nominal, 0);
 
 		const sisa = itemAmplop.jatah - totalTerpakai;
 
@@ -235,20 +235,16 @@ function render(stateObj) {
 	renderRingkasan();
 	renderAmplop();
 	renderTransaksi();
-	perbaruiPilihanKategori();
+	updateKategoriAmplop();
 }
 
 // ------------------- EVENTS
 
-btnBukaTransaksi.addEventListener("click", () => {
-	modalTransaksi.showModal();
-});
+btnBukaTransaksi.addEventListener("click", () => {modalTransaksi.showModal();});
 btnTutupTransaksi.addEventListener("click", () => modalTransaksi.close());
 btnBatalTransaksi.addEventListener("click", () => modalTransaksi.close());
 
-btnBukaAmplop.addEventListener("click", () => {
-	modalAmplop.showModal();
-});
+btnBukaAmplop.addEventListener("click", () => {modalAmplop.showModal();});
 btnTutupAmplop.addEventListener("click", () => modalAmplop.close());
 btnBatalAmplop.addEventListener("click", () => modalAmplop.close());
 
